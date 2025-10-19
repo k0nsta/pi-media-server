@@ -4,18 +4,10 @@ services:
     image: adguard/adguardhome:latest
     container_name: adguard
     restart: unless-stopped
-    ports:
-      - "53:53/tcp"      # DNS
-      - "53:53/udp"      # DNS
-      - "3000:3000/tcp"  # Initial setup (can remove after first setup)
-      - "80:80/tcp"      # Web UI (HTTP)
-      - "443:443/tcp"    # Web UI (HTTPS)
-      - "853:853/tcp"    # DNS-over-TLS
+    network_mode: host  # Use host network for DNS to work on local network
     volumes:
       - ./config/adguard/work:/opt/adguardhome/work
       - ./config/adguard/conf:/opt/adguardhome/conf
-    networks:
-      - media-network
 
   # TorrServ - Torrent streaming server
   torrserv:
