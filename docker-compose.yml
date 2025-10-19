@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # AdGuard Home - DNS and ad blocking
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"      # DNS
+      - "53:53/udp"      # DNS
+      - "3000:3000/tcp"  # Initial setup (can remove after first setup)
+      - "80:80/tcp"      # Web UI (HTTP)
+      - "443:443/tcp"    # Web UI (HTTPS)
+      - "853:853/tcp"    # DNS-over-TLS
+    volumes:
+      - ./config/adguard/work:/opt/adguardhome/work
+      - ./config/adguard/conf:/opt/adguardhome/conf
+    networks:
+      - media-network
+
+  # TorrServ - Torrent streaming server
+  torrserv:
+    image: ghcr.io/yourok/torrserver:latest
+    container_name: torrserv
+    restart: unless-stopped
+    ports:
+      - "8090:8090"      # Web UI and API
+    volumes:
+      - ./config/torrserv:/opt/ts
+    environment:
+      - TS_PORT=8090
+      - TS_DONTKILL=1
+      - TS_HTTPAUTH=0    # Set to 1 to enable auth, configure in UI
+    networks:
+      - media-network
+
+  # Lampac - IPTV proxy
+  lampac:
+    image: immisterio/lampac:latest
+    container_name: lampac
+    restart: unless-stopped
+    ports:
+      - "9118:9118"      # Web UI and API
+    volumes:
+      - ./config/lampac:/lampac/init.conf
+    environment:
+      - TZ=Europe/Amsterdam  # Adjust to your timezone
+    networks:
+      - media-network
+
+  # iSponsorBlockTV - YouTube ad blocker
+  isponsorblocktv:
+    image: ghcr.io/dmunozv04/isponsorblocktv:latest
+    container_name: isponsorblocktv
+    restart: unless-stopped
+    ports:
+      - "8008:8008"      # Web UI
+    volumes:
+      - ./config/isponsorblocktv:/app/data
+    environment:
+      - TZ=Europe/Amsterdam  # Adjust to your timezone
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - media-network
+
+networks:
+  media-network:
+    driver: bridge
+
+# Volume definitions for explicit volume management (optional)
+volumes:
+  adguard_work:
+  adguard_conf:
+  torrserv_data:
+  lampac_config:
+  isponsorblocktv_data:

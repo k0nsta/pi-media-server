@@ -1,0 +1,41 @@
+# Sensitive data - never commit these
+.env
+*.key
+*.pem
+*.crt
+
+# Service data directories (contain runtime data, databases, logs)
+config/adguard/work/
+config/adguard/conf/data/
+config/torrserv/*.db
+config/torrserv/cache/
+config/lampac/cache/
+config/isponsorblocktv/*.db
+
+# Keep configuration templates but ignore actual config files with secrets
+config/**/secrets/
+config/**/*password*
+config/**/*secret*
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.backup
+*.bak
+
+# Note: We DO want to commit:
+# - docker-compose.yml
+# - scripts/
+# - config/ directory structure
+# - config template files (without secrets)
