@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # AdGuard Home - DNS and ad blocking
   adguard:
@@ -37,7 +35,7 @@ services:
 
   # Lampac - IPTV proxy
   lampac:
-    image: immisterio/lampac:latest
+    image: immisterio/lampac:arm64
     container_name: lampac
     restart: unless-stopped
     ports:
