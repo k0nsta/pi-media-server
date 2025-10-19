@@ -27,7 +27,8 @@ echo -e "${YELLOW}Backing up AdGuard Home config...${NC}"
 if [ -d "$CONFIG_DIR/adguard/conf" ]; then
     # Only backup the main config file, not databases/sessions
     if [ -f "$CONFIG_DIR/adguard/conf/AdGuardHome.yaml" ]; then
-        cp "$CONFIG_DIR/adguard/conf/AdGuardHome.yaml" "$CONFIG_DIR/adguard/AdGuardHome.yaml.backup"
+        sudo cp "$CONFIG_DIR/adguard/conf/AdGuardHome.yaml" "$CONFIG_DIR/adguard/AdGuardHome.yaml.backup"
+        sudo chown $USER:$USER "$CONFIG_DIR/adguard/AdGuardHome.yaml.backup"
         echo "AdGuard config backed up"
     fi
 fi
