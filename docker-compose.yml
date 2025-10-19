@@ -25,11 +25,11 @@ services:
     container_name: torrserv
     restart: unless-stopped
     ports:
-      - "8090:8090"      # Web UI and API
+      - "5665:5665"      # Web UI and API
     volumes:
       - ./config/torrserv:/opt/ts
     environment:
-      - TS_PORT=8090
+      - TS_PORT=5665
       - TS_DONTKILL=1
       - TS_HTTPAUTH=0    # Set to 1 to enable auth, configure in UI
     networks:

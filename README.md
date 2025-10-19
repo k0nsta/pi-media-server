@@ -56,7 +56,7 @@ After first boot, configure each service:
 
 - **AdGuard Home**: http://YOUR_PI_IP:3000 (initial setup)
   - After setup: http://YOUR_PI_IP:80
-- **TorrServ**: http://YOUR_PI_IP:8090
+- **TorrServ**: http://YOUR_PI_IP:5665
 - **Lampac**: http://YOUR_PI_IP:9118
 - **iSponsorBlockTV**: http://YOUR_PI_IP:8008
 
@@ -278,7 +278,7 @@ sudo apt upgrade -y
 |                  | 80, 443                  | Web UI                 |
 |                  | 3000                     | Initial setup          |
 |                  | 853                      | DNS-over-TLS           |
-| TorrServ         | 8090                     | Web UI & API           |
+| TorrServ         | 5665                     | Web UI & API           |
 | Lampac           | 9118                     | Web UI & API           |
 | iSponsorBlockTV  | 8008                     | Web UI                 |
 
