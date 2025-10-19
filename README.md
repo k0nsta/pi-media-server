@@ -62,45 +62,6 @@ After first boot, configure each service:
 
 ---
 
-## Backup Your Configuration
-
-After configuring your services, backup the settings:
-
-```bash
-cd ~/pi-media-server
-chmod +x scripts/backup.sh scripts/restore.sh
-
-# Run backup
-./scripts/backup.sh
-
-# Commit and push to GitHub
-git add -A
-git commit -m "Backup: $(date +%Y-%m-%d)"
-git push
-```
-
-**Schedule automatic backups** (optional):
-```bash
-# Add to crontab
-crontab -e
-
-# Add this line to backup daily at 2 AM
-0 2 * * * cd ~/pi-media-server && ./scripts/backup.sh && git add -A && git commit -m "Auto backup: $(date +%Y-%m-%d)" && git push
-```
-
----
-
-## Restore Configuration
-
-If you've backed up your configs and need to restore them:
-
-```bash
-cd ~/pi-media-server
-./scripts/restore.sh
-```
-
----
-
 ## Manual Docker Commands
 
 ### View running containers
@@ -154,16 +115,15 @@ pi-media-server/
 ├── setup.sh                    # Automated setup script
 ├── .gitignore                  # Git ignore rules
 ├── README.md                   # This file
-├── config/                     # Service configurations
+├── config/                     # Service configurations (generated at runtime)
 │   ├── adguard/
-│   │   ├── work/              # Runtime data (not backed up)
-│   │   └── conf/              # Configuration (backed up)
 │   ├── torrserv/
 │   ├── lampac/
 │   └── isponsorblocktv/
 └── scripts/
-    ├── backup.sh              # Backup configurations
-    └── restore.sh             # Restore configurations
+    ├── health-check.sh        # Check service status
+    ├── update.sh              # Update containers
+    └── find-pi.sh             # Network scanning utility
 ```
 
 ---
