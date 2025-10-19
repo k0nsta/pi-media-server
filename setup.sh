@@ -23,7 +23,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO_URL="https://github.com/YOUR_USERNAME/pi-media-server.git"  # UPDATE THIS!
+REPO_URL="https://github.com/k0nsta/pi-media-server.git"
 INSTALL_DIR="$HOME/pi-media-server"
 
 # Check if running as root

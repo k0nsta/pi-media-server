@@ -27,7 +27,7 @@ ssh pi@<IP_ADDRESS>
 
 ### 3. Run Automated Setup (One Command)
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/pi-media-server/main/setup.sh | bash
+curl -sSL https://raw.githubusercontent.com/k0nsta/pi-media-server/main/setup.sh | bash
 ```
 
 **That's it!** In 5-10 minutes, all services will be running.
@@ -40,7 +40,7 @@ curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/pi-media-server/main/s
 
 1. **Clone this repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/pi-media-server.git
+git clone https://github.com/k0nsta/pi-media-server.git
 cd pi-media-server
 ```
 
